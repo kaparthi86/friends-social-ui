@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connectspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient-glow ambient-one"></div>
+    <div class="ambient-glow ambient-two"></div>
+
+    <div id="authView" class="auth-wrapper">
+      <section class="auth-card card">
+        <p class="eyebrow">Welcome to Your Crew</p>
+        <h1>Connectspace</h1>
+        <p class="auth-subtitle">Private social space - only by invite.</p>
+
+        <button id="googleAuthBtn" class="primary-btn" type="button">Continue with Gmail</button>
+        <p id="authMessage" class="auth-message"></p>
+      </section>
+    </div>
+
+    <div id="appShell" class="app-shell app-hidden">
+      <aside class="left-nav card">
+        <h1>Connectspace</h1>
+        <p class="left-subtitle">Private social space - only by invite.</p>
+        <div class="profile-preview">
+          <div class="profile-avatar">
+            <img id="profileImage" class="profile-image app-hidden" alt="Profile" />
+            <span id="profileInitials">AP</span>
+          </div>
+          <div class="profile-meta">
+            <strong>Alex Parker</strong>
+            <span>@alexprivate</span>
+          </div>
+        </div>
+        <section class="profile-bio card-lite">
+          <div class="bio-header">
+            <strong>Private Profile Hub</strong>
+            <button id="editBioBtn" class="nav-btn" type="button">Edit Bio</button>
+          </div>
+          <div id="bioView" class="bio-view"></div>
+          <form id="bioForm" class="bio-form app-hidden">
+            <textarea id="bioAboutInput" rows="2" placeholder="Short bio"></textarea>
+            <input id="bioWorkInput" type="text" placeholder="Workplace" />
+            <input id="bioEducationInput" type="text" placeholder="Education" />
+            <input id="bioCityInput" type="text" placeholder="Current city" />
+            <input id="bioRelationshipInput" type="text" placeholder="Relationship status" />
+            <div class="bio-actions">
+              <button class="primary-btn" type="submit">Save</button>
+              <button id="cancelBioBtn" class="nav-btn" type="button">Cancel</button>
+            </div>
+          </form>
+        </section>
+        <div class="premium-badge">
+          <p id="liveStatusTitle">Private Vibe Only</p>
+          <span id="liveStatusText">One profile. Your people. Your energy.</span>
+        </div>
+        <button id="notifCenterBtn" class="nav-btn logout-btn sidebar-notify-btn" type="button">Notify</button>
+        <button id="logoutBtn" class="nav-btn logout-btn sidebar-logout" type="button">Logout</button>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar card">
+          <div class="search-wrap">
+            <span class="search-icon">Search</span>
+            <input id="searchInput" placeholder="Search friends or posts..." />
+          </div>
+        </header>
+
+        <section id="globalSearchPanel" class="card app-hidden">
+          <div class="section-head">
+            <h2>Global Search</h2>
+            <span id="searchMeta" class="section-note"></span>
+          </div>
+          <div id="globalSearchResults"></div>
+        </section>
+
+        <section class="hero-strip card">
+          <div>
+            <p class="eyebrow">Today</p>
+            <h2>Your crew is buzzing</h2>
+            <p id="heroText" class="hero-text">12 new friend updates and 4 pending replies.</p>
+          </div>
+          <button class="primary-btn">Drop a Vibe</button>
+        </section>
+
+        <section class="stories card">
+          <div class="section-head">
+            <h2>Stories</h2>
+            <span class="section-note">Tap to view</span>
+          </div>
+          <div id="storiesRow" class="stories-row"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h2>Reels Highlights</h2>
+            <button id="refreshReelsBtn" class="nav-btn" type="button">Refresh</button>
+          </div>
+          <div id="reelsRow" class="reels-row"></div>
+        </section>
+
+        <section class="card snap-lab">
+          <div class="section-head">
+            <h2>Snap Lens Studio</h2>
+            <span class="section-note">Quick camera-style post tools</span>
+          </div>
+          <div id="lensFilters" class="lens-filters"></div>
+          <div class="snap-actions">
+            <button id="snapNowBtn" class="primary-btn" type="button">Snap Now</button>
+            <button id="toggleGhostModeBtn" class="nav-btn" type="button">Ghost Mode Off</button>
+          </div>
+        </section>
+
+        <section class="composer card">
+          <h2>Create a Vibe</h2>
+          <textarea id="postText" rows="3" placeholder="What's new with your friends?"></textarea>
+          <input id="postMediaInput" type="file" accept="image/*,video/*" />
+          <div id="postMediaPreview" class="post-media-preview app-hidden"></div>
+          <select id="visibilitySelect" class="visibility-select">
+            <option value="public">Public Circle</option>
+            <option value="close_friends">Close Friends</option>
+          </select>
+          <button id="postBtn" class="primary-btn">Post</button>
+        </section>
+
+        <section>
+          <div class="section-head">
+            <h2 class="feed-title">For You</h2>
+            <select id="feedVisibilityFilter" class="visibility-select">
+              <option value="all">All Posts</option>
+              <option value="close_friends">Close Friends Only</option>
+              <option value="public">Public Circle Only</option>
+            </select>
+          </div>
+          <div id="feed"></div>
+        </section>
+
+        <section id="profilePage" class="card app-hidden"></section>
+      </main>
+
+      <aside class="right-panel card">
+        <section id="widgetLive" class="right-widget">
+          <h3>Live Pulse</h3>
+          <div class="live-top-row">
+            <div id="userChip" class="user-chip">Hi, Alex</div>
+            <div class="live-top-actions">
+              <span id="networkStatus" class="network-status">Online</span>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric-item">
+              <p>Online now</p>
+              <strong id="onlineCount">24</strong>
+            </div>
+            <div class="metric-item">
+              <p>New posts</p>
+              <strong id="postCount">7</strong>
+            </div>
+          </div>
+        </section>
+        <section id="widgetDmInbox" class="right-widget">
+          <h3>DM Inbox <span id="dmUnreadCount" class="pill-count">0</span></h3>
+          <ul id="dmList" class="dm-list"></ul>
+        </section>
+        <section id="widgetNotifications" class="right-widget">
+          <h3>Notifications</h3>
+          <ul id="notificationList" class="notification-list"></ul>
+        </section>
+        <section id="widgetSuggested" class="right-widget">
+          <h3>Suggested Friends</h3>
+          <ul id="suggestedFriends"></ul>
+          <button id="inviteFriendsBtn" class="nav-btn logout-btn" type="button">Invite Friends</button>
+          <ul id="inviteHistoryList" class="notification-list"></ul>
+        </section>
+        <section id="widgetTrending" class="right-widget">
+          <h3>Trending</h3>
+          <div id="trendTags" class="trend-tags"></div>
+        </section>
+        <section id="widgetStreaks" class="right-widget">
+          <h3>Snap Streaks</h3>
+          <ul id="streakList" class="streak-list"></ul>
+        </section>
+        <section id="widgetPlans" class="right-widget">
+          <h3>Plans Today</h3>
+          <div class="event-card">
+            <p><strong>Game Night</strong></p>
+            <p>8:00 PM with school friends</p>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <div id="storyModal" class="story-modal app-hidden">
+      <div class="story-modal-card card">
+        <div id="storyProgress" class="story-progress"></div>
+        <div class="story-modal-head">
+          <strong id="storyUserName">Story</strong>
+          <button id="closeStoryBtn" class="nav-btn" type="button">Close</button>
+        </div>
+        <div id="storyBody" class="story-body"></div>
+        <div class="story-controls">
+          <button id="prevStoryBtn" class="nav-btn" type="button">Prev</button>
+          <button id="nextStoryBtn" class="nav-btn" type="button">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="dmBackdrop" class="dm-backdrop app-hidden"></div>
+    <aside id="dmDrawer" class="dm-drawer app-hidden">
+      <div class="dm-drawer-head">
+        <strong id="dmDrawerTitle">Chat</strong>
+        <button id="closeDmDrawerBtn" class="nav-btn" type="button">Close</button>
+      </div>
+      <div id="dmThread" class="dm-thread"></div>
+      <form id="dmComposer" class="dm-composer">
+        <input id="dmInput" type="text" placeholder="Type a message..." />
+        <button class="primary-btn" type="submit">Send</button>
+      </form>
+    </aside>
+    <input id="profileUploadInput" class="app-hidden" type="file" accept="image/*" />
+
+    <button id="floatingCloseBtn" class="floating-close app-hidden" type="button">X</button>
+    <div id="toast" class="toast app-hidden"></div>
+    <div id="notifCenterBackdrop" class="dm-backdrop app-hidden"></div>
+    <aside id="notifCenterDrawer" class="dm-drawer app-hidden">
+      <div class="dm-drawer-head">
+        <strong>Notifications Center</strong>
+        <button id="closeNotifCenterBtn" class="nav-btn" type="button">Close</button>
+      </div>
+      <section class="card-lite">
+        <h3>Preferences</h3>
+        <label><input id="prefMessages" type="checkbox" checked /> Messages</label>
+        <label><input id="prefFriends" type="checkbox" checked /> Friends</label>
+        <label><input id="prefModeration" type="checkbox" checked /> Moderation</label>
+        <label><input id="prefSystem" type="checkbox" checked /> System</label>
+      </section>
+      <section class="card-lite">
+        <div class="section-head">
+          <h3>All Notifications</h3>
+          <button id="clearNotificationsBtn" class="nav-btn" type="button">Clear</button>
+        </div>
+        <ul id="notifCenterList" class="notification-list"></ul>
+      </section>
+    </aside>
+    <div id="profilePhotoModal" class="story-modal app-hidden">
+      <div class="story-modal-card card profile-photo-modal-card">
+        <div class="story-modal-head">
+          <strong>Profile Photo</strong>
+          <button id="closeProfilePhotoBtn" class="nav-btn" type="button">Close</button>
+        </div>
+        <div id="profilePhotoViewer" class="profile-photo-viewer">
+          <img id="profilePhotoViewerImage" alt="Profile full view" />
+        </div>
+        <p id="profilePhotoHint" class="section-note">Tap image area or Upload Photo.</p>
+        <div class="profile-photo-actions">
+          <button id="profileUploadBtn" class="nav-btn" type="button">Upload Photo</button>
+          <button id="removeProfilePhotoBtn" class="nav-btn" type="button">Remove Photo</button>
+        </div>
+        <p class="section-note">Tip: you can also drag and drop a photo on your avatar.</p>
+      </div>
+    </div>
+    <div id="shareModal" class="story-modal app-hidden">
+      <div class="story-modal-card card">
+        <div class="story-modal-head">
+          <strong>Share Post</strong>
+          <button id="closeShareModalBtn" class="nav-btn" type="button">Close</button>
+        </div>
+        <form id="shareForm" class="bio-form">
+          <textarea id="shareCaptionInput" rows="3" placeholder="Add a caption (optional)"></textarea>
+          <select id="shareVisibilitySelect" class="visibility-select">
+            <option value="public">Public Circle</option>
+            <option value="close_friends">Close Friends</option>
+          </select>
+          <button class="primary-btn" type="submit">Share Now</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+  </html>
