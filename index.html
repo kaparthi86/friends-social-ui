@@ -2,291 +2,345 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connectspace</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"
+    />
+    <meta name="theme-color" content="#0b1020" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>Student AI Hub - MVP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=mobile-shell-1" />
   </head>
   <body>
-    <div class="ambient-glow ambient-one"></div>
-    <div class="ambient-glow ambient-two"></div>
+    <div class="bg-glow one"></div>
+    <div class="bg-glow two"></div>
 
-    <div id="authView" class="auth-wrapper">
-      <section class="auth-card card">
-        <p class="eyebrow">Welcome to Your Crew</p>
-        <h1>Connectspace</h1>
-        <p class="auth-subtitle">Private social space - only by invite.</p>
-
-        <button id="googleAuthBtn" class="primary-btn" type="button">Continue with Gmail</button>
-        <p id="authMessage" class="auth-message"></p>
-      </section>
-    </div>
-
-    <div id="appShell" class="app-shell app-hidden">
-      <aside class="left-nav card">
-        <h1>Connectspace</h1>
-        <p class="left-subtitle">Private social space - only by invite.</p>
-        <div class="profile-preview">
-          <div class="profile-avatar">
-            <img id="profileImage" class="profile-image app-hidden" alt="Profile" />
-            <span id="profileInitials">AP</span>
-          </div>
-          <div class="profile-meta">
-            <strong>Alex Parker</strong>
-            <span>@alexprivate</span>
-          </div>
-        </div>
-        <section class="profile-bio card-lite">
-          <div class="bio-header">
-            <strong>Private Profile Hub</strong>
-            <button id="editBioBtn" class="nav-btn" type="button">Edit Bio</button>
-          </div>
-          <div id="bioView" class="bio-view"></div>
-          <form id="bioForm" class="bio-form app-hidden">
-            <textarea id="bioAboutInput" rows="2" placeholder="Short bio"></textarea>
-            <input id="bioWorkInput" type="text" placeholder="Workplace" />
-            <input id="bioEducationInput" type="text" placeholder="Education" />
-            <input id="bioCityInput" type="text" placeholder="Current city" />
-            <input id="bioRelationshipInput" type="text" placeholder="Relationship status" />
-            <div class="bio-actions">
-              <button class="primary-btn" type="submit">Save</button>
-              <button id="cancelBioBtn" class="nav-btn" type="button">Cancel</button>
+    <main class="container">
+      <div id="betaBanner" class="beta-banner hidden" role="status" aria-live="polite"></div>
+      <section class="auth card auth-card" id="authCard">
+        <header class="app-head auth-head">
+          <div class="app-head-top">
+            <div class="app-brand" aria-label="Student AI Hub">
+              <span class="brand-mark" aria-hidden="true">
+                <svg class="brand-mark-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="12" fill="url(#authBrandGrad)" />
+                  <path
+                    d="M12 14h10a4 4 0 0 1 0 8H12V14zm0 10h11a4 4 0 0 1 0 8H12v-8z"
+                    fill="white"
+                    fill-opacity="0.92"
+                  />
+                  <defs>
+                    <linearGradient id="authBrandGrad" x1="8" y1="6" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#7a6dff" />
+                      <stop offset="1" stop-color="#3eb8f8" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <div class="brand-wordmark">
+                <span class="brand-title">Student AI <span class="brand-hub">Hub</span></span>
+                <span class="brand-kicker">Learn &middot; Code &middot; Notebook</span>
+              </div>
             </div>
-          </form>
-        </section>
-        <div class="premium-badge">
-          <p id="liveStatusTitle">Private Vibe Only</p>
-          <span id="liveStatusText">One profile. Your people. Your energy.</span>
-        </div>
-        <button id="notifCenterBtn" class="nav-btn logout-btn sidebar-notify-btn" type="button">Notify</button>
-        <button id="logoutBtn" class="nav-btn logout-btn sidebar-logout" type="button">Logout</button>
-      </aside>
-
-      <main class="main-content">
-        <header class="top-bar card">
-          <div class="search-wrap">
-            <span class="search-icon">Search</span>
-            <input id="searchInput" placeholder="Search friends or posts..." />
+            <button
+              type="button"
+              class="ghost-btn auth-head-placeholder"
+              tabindex="-1"
+              aria-hidden="true"
+              disabled
+            >
+              Logout
+            </button>
+          </div>
+          <div class="app-greeting auth-greeting">
+            <h2 class="auth-signin-title">Sign in</h2>
+            <p class="muted app-tagline">
+              Continue with Google to use Ask, Code, and Notebook. Free for students &mdash; learn faster, code smarter.
+            </p>
           </div>
         </header>
 
-        <section id="globalSearchPanel" class="card app-hidden">
-          <div class="section-head">
-            <h2>Global Search</h2>
-            <span id="searchMeta" class="section-note"></span>
-          </div>
-          <div id="globalSearchResults"></div>
-        </section>
+        <p class="eyebrow auth-eyebrow">Free for students</p>
+        <button id="googleLoginBtn" class="primary-btn auth-google-btn" type="button">Continue with Google</button>
+        <p id="authStatus" class="muted auth-status"></p>
 
-        <section class="hero-strip card">
-          <div>
-            <p class="eyebrow">Today</p>
-            <h2>Your crew is buzzing</h2>
-            <p id="heroText" class="hero-text">12 new friend updates and 4 pending replies.</p>
-          </div>
-          <button class="primary-btn">Drop a Vibe</button>
-        </section>
-
-        <section class="stories card">
-          <div class="section-head">
-            <h2>Stories</h2>
-            <span class="section-note">Tap to view</span>
-          </div>
-          <div id="storiesRow" class="stories-row"></div>
-        </section>
-
-        <section class="card">
-          <div class="section-head">
-            <h2>Reels Highlights</h2>
-            <button id="refreshReelsBtn" class="nav-btn" type="button">Refresh</button>
-          </div>
-          <div id="reelsRow" class="reels-row"></div>
-        </section>
-
-        <section class="card snap-lab">
-          <div class="section-head">
-            <h2>Snap Lens Studio</h2>
-            <span class="section-note">Quick camera-style post tools</span>
-          </div>
-          <div id="lensFilters" class="lens-filters"></div>
-          <div class="snap-actions">
-            <button id="snapNowBtn" class="primary-btn" type="button">Snap Now</button>
-            <button id="toggleGhostModeBtn" class="nav-btn" type="button">Ghost Mode Off</button>
-          </div>
-        </section>
-
-        <section class="composer card">
-          <h2>Create a Vibe</h2>
-          <textarea id="postText" rows="3" placeholder="What's new with your friends?"></textarea>
-          <input id="postMediaInput" type="file" accept="image/*,video/*" />
-          <div id="postMediaPreview" class="post-media-preview app-hidden"></div>
-          <select id="visibilitySelect" class="visibility-select">
-            <option value="public">Public Circle</option>
-            <option value="close_friends">Close Friends</option>
-          </select>
-          <button id="postBtn" class="primary-btn">Post</button>
-        </section>
-
-        <section>
-          <div class="section-head">
-            <h2 class="feed-title">For You</h2>
-            <select id="feedVisibilityFilter" class="visibility-select">
-              <option value="all">All Posts</option>
-              <option value="close_friends">Close Friends Only</option>
-              <option value="public">Public Circle Only</option>
-            </select>
-          </div>
-          <div id="feed"></div>
-        </section>
-
-        <section id="profilePage" class="card app-hidden"></section>
-      </main>
-
-      <aside class="right-panel card">
-        <section id="widgetLive" class="right-widget">
-          <h3>Live Pulse</h3>
-          <div class="live-top-row">
-            <div id="userChip" class="user-chip">Hi, Alex</div>
-            <div class="live-top-actions">
-              <span id="networkStatus" class="network-status">Online</span>
-            </div>
-          </div>
-          <div class="metric-grid">
-            <div class="metric-item">
-              <p>Online now</p>
-              <strong id="onlineCount">24</strong>
-            </div>
-            <div class="metric-item">
-              <p>New posts</p>
-              <strong id="postCount">7</strong>
-            </div>
-          </div>
-        </section>
-        <section id="widgetDmInbox" class="right-widget">
-          <h3>DM Inbox <span id="dmUnreadCount" class="pill-count">0</span></h3>
-          <ul id="dmList" class="dm-list"></ul>
-        </section>
-        <section id="widgetNotifications" class="right-widget">
-          <h3>Notifications</h3>
-          <ul id="notificationList" class="notification-list"></ul>
-        </section>
-        <section id="widgetSuggested" class="right-widget">
-          <h3>Suggested Friends</h3>
-          <ul id="suggestedFriends"></ul>
-          <button id="inviteFriendsBtn" class="nav-btn logout-btn" type="button">Invite Friends</button>
-          <ul id="inviteHistoryList" class="notification-list"></ul>
-        </section>
-        <section id="widgetTrending" class="right-widget">
-          <h3>Trending</h3>
-          <div id="trendTags" class="trend-tags"></div>
-        </section>
-        <section id="widgetStreaks" class="right-widget">
-          <h3>Snap Streaks</h3>
-          <ul id="streakList" class="streak-list"></ul>
-        </section>
-        <section id="widgetPlans" class="right-widget">
-          <h3>Plans Today</h3>
-          <div class="event-card">
-            <p><strong>Game Night</strong></p>
-            <p>8:00 PM with school friends</p>
-          </div>
-        </section>
-      </aside>
-    </div>
-
-    <div id="storyModal" class="story-modal app-hidden">
-      <div class="story-modal-card card">
-        <div id="storyProgress" class="story-progress"></div>
-        <div class="story-modal-head">
-          <strong id="storyUserName">Story</strong>
-          <button id="closeStoryBtn" class="nav-btn" type="button">Close</button>
-        </div>
-        <div id="storyBody" class="story-body"></div>
-        <div class="story-controls">
-          <button id="prevStoryBtn" class="nav-btn" type="button">Prev</button>
-          <button id="nextStoryBtn" class="nav-btn" type="button">Next</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="dmBackdrop" class="dm-backdrop app-hidden"></div>
-    <aside id="dmDrawer" class="dm-drawer app-hidden">
-      <div class="dm-drawer-head">
-        <strong id="dmDrawerTitle">Chat</strong>
-        <button id="closeDmDrawerBtn" class="nav-btn" type="button">Close</button>
-      </div>
-      <div id="dmThread" class="dm-thread"></div>
-      <form id="dmComposer" class="dm-composer">
-        <input id="dmInput" type="text" placeholder="Type a message..." />
-        <button class="primary-btn" type="submit">Send</button>
-      </form>
-    </aside>
-    <input id="profileUploadInput" class="app-hidden" type="file" accept="image/*" />
-
-    <button id="floatingCloseBtn" class="floating-close app-hidden" type="button">X</button>
-    <div id="toast" class="toast app-hidden"></div>
-    <div id="notifCenterBackdrop" class="dm-backdrop app-hidden"></div>
-    <aside id="notifCenterDrawer" class="dm-drawer app-hidden">
-      <div class="dm-drawer-head">
-        <strong>Notifications Center</strong>
-        <button id="closeNotifCenterBtn" class="nav-btn" type="button">Close</button>
-      </div>
-      <section class="card-lite">
-        <h3>Preferences</h3>
-        <label><input id="prefMessages" type="checkbox" checked /> Messages</label>
-        <label><input id="prefFriends" type="checkbox" checked /> Friends</label>
-        <label><input id="prefModeration" type="checkbox" checked /> Moderation</label>
-        <label><input id="prefSystem" type="checkbox" checked /> System</label>
+        <footer class="app-fine-print auth-fine-print" role="note" aria-label="Disclaimer">
+          <p>
+            Student AI Hub can make mistakes. Check important facts and follow your instructor&rsquo;s policies on using
+            AI.
+          </p>
+          <p>
+            For study help and practice only &mdash; follow your honor code; don&rsquo;t submit AI output when your course
+            forbids it.
+          </p>
+        </footer>
       </section>
-      <section class="card-lite">
-        <div class="section-head">
-          <h3>All Notifications</h3>
-          <button id="clearNotificationsBtn" class="nav-btn" type="button">Clear</button>
+
+      <section class="app card hidden" id="appCard">
+        <header class="app-head">
+          <div class="app-head-top">
+            <div class="app-brand" aria-label="Student AI Hub">
+              <span class="brand-mark" aria-hidden="true">
+                <svg class="brand-mark-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="12" fill="url(#brandGrad)" />
+                  <path
+                    d="M12 14h10a4 4 0 0 1 0 8H12V14zm0 10h11a4 4 0 0 1 0 8H12v-8z"
+                    fill="white"
+                    fill-opacity="0.92"
+                  />
+                  <defs>
+                    <linearGradient id="brandGrad" x1="8" y1="6" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#7a6dff" />
+                      <stop offset="1" stop-color="#3eb8f8" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <div class="brand-wordmark">
+                <span class="brand-title">Student AI <span class="brand-hub">Hub</span></span>
+                <span class="brand-kicker">Learn &middot; Code &middot; Notebook</span>
+              </div>
+            </div>
+            <button id="logoutBtn" class="ghost-btn" type="button">Logout</button>
+          </div>
+          <div class="app-greeting">
+            <h2>Welcome <span id="userName">Student</span></h2>
+            <p class="muted app-tagline">Ask a question, get an answer, keep the conversation going.</p>
+          </div>
+        </header>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="chat" type="button">Ask</button>
+          <button class="tab" data-tab="code" type="button">Code</button>
+          <button class="tab" data-tab="notebook" type="button">Notebook</button>
         </div>
-        <ul id="notifCenterList" class="notification-list"></ul>
+
+        <section id="panelChat" class="panel perplexity-panel">
+          <input
+            type="file"
+            id="chatAttachFileInput"
+            class="composer-file-input"
+            tabindex="-1"
+            aria-hidden="true"
+            accept=".txt,.md,.csv,.json,.js,.mjs,.cjs,.ts,.tsx,.jsx,.py,.java,.c,.h,.cpp,.go,.rs,.html,.css,.sql,.sh,.yaml,.yml,.xml,.log,text/*,application/json"
+          />
+          <input type="file" id="chatAttachPhotoInput" class="composer-file-input" tabindex="-1" accept="image/*" aria-hidden="true" />
+          <div id="chatSearchShell" class="search-hero">
+            <p class="search-title">What do you want to learn today?</p>
+            <div class="search-bar search-bar--branded">
+              <span class="search-icon search-icon--logo" aria-hidden="true" title="Student AI Hub">
+                <svg class="search-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="11" fill="url(#searchBrandGrad)" />
+                  <path
+                    d="M12 14h10a4 4 0 0 1 0 8H12V14zm0 10h11a4 4 0 0 1 0 8H12v-8z"
+                    fill="white"
+                    fill-opacity="0.88"
+                  />
+                  <defs>
+                    <linearGradient id="searchBrandGrad" x1="8" y1="6" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#7a6dff" />
+                      <stop offset="1" stop-color="#3eb8f8" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <textarea
+                id="chatSearchInput"
+                rows="1"
+                placeholder="Ask anything... (e.g. Explain gradient descent like I am 15)"
+              ></textarea>
+              <button id="chatSearchSubmit" class="search-submit primary-btn" type="button">Ask</button>
+            </div>
+            <p class="search-hint muted">Press Enter to search. Shift+Enter for a new line.</p>
+            <div class="composer-tools" role="toolbar" aria-label="Add to your question">
+              <button type="button" class="composer-chip" data-composer-attach="file" data-composer-target="search" aria-label="Attach a file">
+                <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                </svg>
+                <span>Attach file</span>
+              </button>
+              <button type="button" class="composer-chip" data-composer-attach="photo" data-composer-target="search" aria-label="Add a photo">
+                <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Photos</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="chatAnswerShell" class="answer-shell hidden">
+            <div id="chatThread" class="chat-thread perplexity-thread" aria-live="polite"></div>
+            <div class="followup-bar">
+              <div
+                id="chatFollowupChips"
+                class="starter-chips starter-chips--inline"
+                role="group"
+                aria-label="Quick follow-ups, click to send"
+              >
+                <button type="button" class="starter-chip" data-starter="summarize">Summarize</button>
+                <button type="button" class="starter-chip" data-starter="quiz">Quiz me</button>
+                <button type="button" class="starter-chip" data-starter="steps">Explain step-by-step</button>
+              </div>
+              <div class="search-bar compact">
+                <textarea id="chatFollowupInput" rows="1" placeholder="Ask a follow-up..."></textarea>
+                <button id="chatFollowupSubmit" class="search-submit primary-btn" type="button">Send</button>
+              </div>
+              <div class="composer-tools composer-tools--followup" role="toolbar" aria-label="Add to your message">
+                <button type="button" class="composer-chip" data-composer-attach="file" data-composer-target="followup" aria-label="Attach a file">
+                  <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                  </svg>
+                  <span>Attach file</span>
+                </button>
+                <button type="button" class="composer-chip" data-composer-attach="photo" data-composer-target="followup" aria-label="Add a photo">
+                  <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                  <span>Photos</span>
+                </button>
+              </div>
+              <div class="followup-meta">
+                <span id="apiStatus" class="muted">Ready</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="panelCode" class="panel perplexity-panel hidden">
+          <input
+            type="file"
+            id="codeAttachFileInput"
+            class="composer-file-input"
+            tabindex="-1"
+            aria-hidden="true"
+            accept=".txt,.md,.csv,.json,.js,.mjs,.cjs,.ts,.tsx,.jsx,.py,.java,.c,.h,.cpp,.go,.rs,.html,.css,.sql,.sh,.yaml,.yml,.xml,.log,text/*,application/json"
+          />
+          <input type="file" id="codeAttachPhotoInput" class="composer-file-input" tabindex="-1" accept="image/*" aria-hidden="true" />
+          <div id="codeSearchShell" class="search-hero">
+            <p class="search-title">Debug or learn code</p>
+            <div class="search-bar search-bar--branded search-bar--code">
+              <span class="search-icon search-icon--logo search-icon--code" aria-hidden="true" title="Student AI Hub">
+                <svg class="search-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="40" height="40" rx="11" fill="url(#searchBrandGradCode)" />
+                  <path
+                    d="M12 14h10a4 4 0 0 1 0 8H12V14zm0 10h11a4 4 0 0 1 0 8H12v-8z"
+                    fill="white"
+                    fill-opacity="0.88"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="searchBrandGradCode"
+                      x1="8"
+                      y1="6"
+                      x2="34"
+                      y2="36"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#5a9fff" />
+                      <stop offset="1" stop-color="#7a6dff" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <textarea
+                id="codeSearchInput"
+                rows="1"
+                placeholder="Paste code or describe the bug..."
+              ></textarea>
+              <button id="codeSearchSubmit" class="search-submit primary-btn" type="button">Ask</button>
+            </div>
+            <p class="search-hint muted">Tip: include error messages and what you expected.</p>
+            <div class="composer-tools" role="toolbar" aria-label="Add to your question">
+              <button type="button" class="composer-chip" data-composer-attach="file" data-composer-target="search" aria-label="Attach a file">
+                <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                </svg>
+                <span>Attach file</span>
+              </button>
+              <button type="button" class="composer-chip" data-composer-attach="photo" data-composer-target="search" aria-label="Add a photo">
+                <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Photos</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="codeAnswerShell" class="answer-shell hidden">
+            <div id="codeThread" class="chat-thread perplexity-thread" aria-live="polite"></div>
+            <div class="followup-bar">
+              <div class="search-bar compact">
+                <textarea id="codeFollowupInput" rows="1" placeholder="Follow-up..."></textarea>
+                <button id="codeFollowupSubmit" class="search-submit primary-btn" type="button">Send</button>
+              </div>
+              <div class="composer-tools composer-tools--followup" role="toolbar" aria-label="Add to your message">
+                <button type="button" class="composer-chip" data-composer-attach="file" data-composer-target="followup" aria-label="Attach a file">
+                  <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                  </svg>
+                  <span>Attach file</span>
+                </button>
+                <button type="button" class="composer-chip" data-composer-attach="photo" data-composer-target="followup" aria-label="Add a photo">
+                  <svg class="composer-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                  <span>Photos</span>
+                </button>
+              </div>
+              <div class="followup-meta">
+                <span id="codeStatus" class="muted">Ready</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="panelNotebook" class="panel hidden">
+          <p class="muted notebook-hint">
+            Upload notes (.txt, .md, .csv, .json, .pdf). You will get summary, key concepts, quiz questions, and a study
+            plan - similar to a lightweight notebook assistant.
+          </p>
+          <div class="upload-row">
+            <input id="docFileInput" type="file" accept=".txt,.md,.csv,.json,.pdf,text/plain,text/markdown,application/pdf" />
+            <button id="docAnalyzeBtn" class="primary-btn" type="button">Analyze document</button>
+          </div>
+          <p id="docFileMeta" class="muted"></p>
+          <div id="notebookThread" class="chat-thread notebook-thread" aria-live="polite"></div>
+          <div class="actions">
+            <span id="notebookStatus" class="muted">Ready</span>
+          </div>
+        </section>
+
+        <footer class="app-fine-print" role="note" aria-label="Disclaimer">
+          <p>
+            Student AI Hub can make mistakes. Check important facts and follow your instructor&rsquo;s policies on using
+            AI.
+          </p>
+          <p>
+            For study help and practice only &mdash; follow your honor code; don&rsquo;t submit AI output when your course
+            forbids it.
+          </p>
+        </footer>
       </section>
-    </aside>
-    <div id="profilePhotoModal" class="story-modal app-hidden">
-      <div class="story-modal-card card profile-photo-modal-card">
-        <div class="story-modal-head">
-          <strong>Profile Photo</strong>
-          <button id="closeProfilePhotoBtn" class="nav-btn" type="button">Close</button>
-        </div>
-        <div id="profilePhotoViewer" class="profile-photo-viewer">
-          <img id="profilePhotoViewerImage" alt="Profile full view" />
-        </div>
-        <p id="profilePhotoHint" class="section-note">Tap image area or Upload Photo.</p>
-        <div class="profile-photo-actions">
-          <button id="profileUploadBtn" class="nav-btn" type="button">Upload Photo</button>
-          <button id="removeProfilePhotoBtn" class="nav-btn" type="button">Remove Photo</button>
-        </div>
-        <p class="section-note">Tip: you can also drag and drop a photo on your avatar.</p>
-      </div>
-    </div>
-    <div id="shareModal" class="story-modal app-hidden">
-      <div class="story-modal-card card">
-        <div class="story-modal-head">
-          <strong>Share Post</strong>
-          <button id="closeShareModalBtn" class="nav-btn" type="button">Close</button>
-        </div>
-        <form id="shareForm" class="bio-form">
-          <textarea id="shareCaptionInput" rows="3" placeholder="Add a caption (optional)"></textarea>
-          <select id="shareVisibilitySelect" class="visibility-select">
-            <option value="public">Public Circle</option>
-            <option value="close_friends">Close Friends</option>
-          </select>
-          <button class="primary-btn" type="submit">Share Now</button>
-        </form>
-      </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
     <script src="./config.js"></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=chips-1"></script>
   </body>
-  </html>
+</html>
